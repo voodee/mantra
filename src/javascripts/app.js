@@ -1,22 +1,18 @@
-
-import './asyncModules'
-import exclaimify from './exclaimify'
-
-const button = document.getElementById('button')
-
-const alertAsyncMessage = function() {
-  // CommonJS async syntax webpack magic
-  require.ensure([], function() {
-    const message = require("./asyncMessage")
-    alert(exclaimify(message))
-  })
-}
-
-console.log(`
-  asset references like this one:
-    images/gulp.png
-  get updated in js too!`)
-
-button.addEventListener('click', alertAsyncMessage)
+require("./lib/TweenMax.min")
 
 
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import configureStore from './react/store/configureStore'
+import { ReduxRouter } from 'redux-router'
+
+const store = configureStore()
+
+
+render(
+  <Provider store={store}>
+    <ReduxRouter />
+  </Provider>,
+  document.getElementById('root')
+)

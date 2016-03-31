@@ -1,3 +1,291 @@
 // Include this if using an Icon Font
 @import 'base/colors'
 @import 'base/mixins'
+
+@import 'partials/mormaliz'
+@import 'partials/footer'
+@import 'partials/share'
+@import 'partials/header'
+@import 'partials/blockquote'
+@import 'partials/history'
+
+body
+  // background-color rgb(250, 153, 214)
+  background-color #fafafa
+
+.main
+  // overflow hidden
+  // height 100vh
+  display flex
+  flex-direction column
+  justify-content center
+  
+  padding-top 8rem
+  padding-bottom 120px
+  
+  min-height calc(100vh - 8rem - 120px)
+  width 100%
+  
+  background-color #ccc
+  
+  &-grid
+    width 100%
+  
+  &-layout
+    min-height 100vh
+
+    &:before
+      content: '“'
+      font-size: 76rem
+      color #fff
+      opacity: 0.1
+      font-family: 'Georgia', serif
+      font-weight: 600
+      position: fixed
+      left: 11vw
+      top: 56vh
+      z-index: 0
+    
+
+  
+.swap
+  &-enter
+    position relative
+    top 0
+    // opacity 0.01
+    // transform translateX(100vw)
+    animation-name bounceInLeft
+    // transition all 5s ease-in
+    animation-duration 1s
+    z-index 2
+    
+    .swap--left &
+      // transform translateX(-100vw)
+      animation-name bounceInRight  
+      animation-duration .75s
+      z-index 1
+  
+    &-active
+      // opacity 1
+      // transform translateX(0)
+      
+      // .left &
+      //   transform translateX(0)
+        
+  
+  &-leave
+    position absolute
+    top 0
+    // opacity 1
+    // transform translateX(0)
+    // transition all 5s ease-in
+    
+    animation-name bounceOutRight  
+    animation-duration 1s
+    z-index 1
+    
+    .swap--left &
+      z-index 2
+    
+  
+    &-active
+      // opacity 0
+      // transform translateX(-100vw)
+      
+      .swap--left &
+        // transform translateX(100vw)
+        animation-name bounceOutLeft  
+        animation-duration .75s
+  
+  &--left
+  &--right 
+    .main
+      // &:nth-child(3)
+      //   display none      
+        
+      &:first-child:nth-last-child(3)
+        display none 
+      
+      &:not(.swap-enter):not(.swap-leave) ~ .main
+        display none 
+      
+      &:first-child:nth-last-child(2) ~ .main
+        position absolute
+
+
+
+@keyframes bounceInLeft 
+  from, 60%, 75%, 90%, to 
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000)
+
+  0% 
+    opacity 0
+    transform translate3d(-3000px, 0, 0)
+
+  60%
+    opacity 1
+    transform translate3d(25px, 0, 0)
+
+  75%
+    transform translate3d(-10px, 0, 0)
+
+  90%
+    transform translate3d(5px, 0, 0)
+
+  to
+    transform none
+    
+
+@keyframes bounceInRight
+  from, 60%, 75%, 90%, to
+    animation-timing-function cubic-bezier(0.215, 0.610, 0.355, 1.000)
+
+  from 
+    opacity 0
+    transform translate3d(3000px, 0, 0)
+
+  60%
+    opacity 1
+    transform translate3d(-25px, 0, 0)
+
+  75%
+    transform translate3d(10px, 0, 0)
+
+  90%
+    transform translate3d(-5px, 0, 0)
+
+  to 
+    transform none
+
+
+
+@keyframes bounceOutLeft 
+  20% 
+    opacity 1
+    transform translate3d(20px, 0, 0)
+
+  to
+    opacity 0
+    transform translate3d(-2000px, 0, 0)
+
+
+@keyframes bounceOutRight
+  20%
+    opacity 1
+    transform translate3d(-20px, 0, 0)
+
+  to 
+    opacity 0
+    transform translate3d(2000px, 0, 0)
+    
+
+
+
+
+
+
+
+
+
+
+
+.amimation-flip
+  
+  &--box
+    position relative
+    overflow hidden
+    
+    > .main-layout
+      backface-visibility visible !important
+      animation-fill-mode both
+
+  &-enter
+    position relative
+    top 0
+    // animation-name flipInX  
+    animation-duration 1s
+
+  
+    &-active
+      // 
+        
+  
+  &-leave
+    position absolute
+    top 0    
+    animation-name zoomOut
+    animation-duration 1s
+    z-index 2
+  
+    &-active
+      // 
+
+
+
+
+@keyframes flip
+  from 
+    transform perspective(400px) rotate3d(0, 1, 0, -360deg)
+    animation-timing-function ease-out
+
+  40%
+    transform perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg)
+    animation-timing-function ease-out
+  
+  50%
+    transform perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg)
+    animation-timing-function ease-in
+
+  80%
+    transform perspective(400px) scale3d(.95, .95, .95)
+    animation-timing-function ease-in
+
+  to
+    transform perspective(400px)
+    animation-timing-function ease-in
+    
+
+@keyframes flipInX
+  from
+    transform perspective(400px) rotate3d(1, 0, 0, 90deg)
+    animation-timing-function ease-in
+    opacity .5
+
+  40%
+    transform perspective(400px) rotate3d(1, 0, 0, -20deg)
+    animation-timing-function ease-in
+
+  60%
+    transform perspective(400px) rotate3d(1, 0, 0, 10deg)
+    opacity 1
+
+  80%
+    transform perspective(400px) rotate3d(1, 0, 0, -5deg)
+
+  to
+    transform perspective(400px)
+    
+
+@keyframes flipOutX
+  from 
+    transform perspective(400px)
+
+  30%
+    transform perspective(400px) rotate3d(1, 0, 0, -20deg)
+    opacity 1
+
+  to
+    transform perspective(400px) rotate3d(1, 0, 0, 90deg)
+    opacity 0
+    
+
+@keyframes zoomOut
+  from
+    opacity 1
+
+  50%
+    opacity 0
+    transform scale3d(.3, .3, .3)
+
+  to
+    opacity 0

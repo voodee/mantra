@@ -24,6 +24,11 @@ var serverTask = function() {
     .use(compress())
     .use(logger(settings.logLevel))
     .use('/', express.static(settings.root, settings.staticOptions))
+
+    .get('*', function (request, response) {
+      response.sendFile(path.resolve(settings.root, 'index.html'))
+    })
+    
     .listen(settings.port)
 
   gutil.log('production server started on ' + gutil.colors.green(url))

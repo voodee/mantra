@@ -10,6 +10,7 @@ var htmlmin      = require('gulp-htmlmin')
 var path         = require('path')
 var jade         = require('gulp-jade')
 var fs           = require('fs')
+var inject       = require('gulp-inject')
 
 var exclude = path.normalize('!**/{' + config.tasks.jade.excludeFolders.join(',') + '}/**')
 
@@ -25,14 +26,17 @@ var getData = function(file) {
 
 
 var jadeTask = function() {
+  var resources = gulp.src(config.tasks.inject.resources, {read: false});
+
   return gulp.src(paths.src)
     .pipe(data(getData))
     .pipe(jade(config.tasks.jade.settings))
     .on('error', handleErrors)
+    .pipe(inject(resources, {ignorePath: 'public', removeTags: true}))
     .pipe(gulpif(process.env.npm_lifecycle_event == 'production', htmlmin(config.tasks.jade.htmlmin)))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
 }
 
-gulp.task('jade', jadeTask)
+gulp.task('jade', ['css'], jadeTask)
 module.exports = jadeTask

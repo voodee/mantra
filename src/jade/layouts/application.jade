@@ -12,10 +12,15 @@ html(lang='en', prefix='og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#', class='
     meta(name='google', value='notranslate')
     link( rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"   )
     link( rel="stylesheet", href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css" )
-    script( src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js" )
+    
+
+
+    link( rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,400italic,500italic,700,700italic,900,900italic&subset=latin,cyrillic' )
     link( rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" )
 
-    link(rel='stylesheet', href='/css/main.css')
+    //- link(rel='stylesheet', href='/css/main.css')
+    // inject:css
+    // endinject
 
     if App
       meta(name='apple-mobile-web-app-title', content='#{SiteName}')
@@ -113,21 +118,23 @@ html(lang='en', prefix='og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#', class='
 
   body
     // if lt IE 10 <p class='outdatedBrowser'> You are using an strong outdated browser. Please <a href='http://outdatedbrowser.com/' class='outdatedBrowser-link'>upgrade your browser</a> to improve your experience.
-    .mdl-layout
-      if Header
-        include ../shared/_header
+    
+    
+    if Header
+      include ../shared/_header
 
-      main.mdl-layout__content
-        block content
+    block content
 
-
-
-      if Footer
-        include ../shared/_footer
+    if Footer
+      include ../shared/_footer
     
 
-    script(src='js/shared.js')
-    script(src='js/app.js')
+
+
+    script(src='/js/shared.js')
+    script( src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js" )
+    block javascript
+
 
     if GoogleAnalytics
       script.
@@ -137,3 +144,7 @@ html(lang='en', prefix='og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#', class='
         e.src='//www.google-analytics.com/analytics.js';
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','#{GoogleAnalytics}','auto');ga('send','pageview');
+
+
+
+

@@ -5,6 +5,12 @@ var path            = require('path')
 var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
 
+// react
+var devFlagPlugin = new webpack.DefinePlugin({
+  __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+});
+// react end
+
 module.exports = function(env) {
   var jsSrc = path.resolve(config.root.src, config.tasks.js.src)
   var jsDest = path.resolve(config.root.dest, config.tasks.js.dest)
@@ -16,7 +22,13 @@ module.exports = function(env) {
 
   var webpackConfig = {
     context: jsSrc,
-    plugins: [],
+    plugins: [
+      // react
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
+      devFlagPlugin
+      // react end
+    ],
     resolve: {
       root: jsSrc,
       extensions: [''].concat(extensions)

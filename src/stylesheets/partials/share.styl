@@ -1,0 +1,65 @@
+.share
+  max-width 600px
+  height 56px
+  margin: 0 auto
+  -webkit-filter: url("#goo-menu")
+  filter: url("../#goo-menu")
+  position: relative
+  
+  &-button
+  &-toggle-button
+    position: absolute
+    display: inline-block
+    left: 50%
+    top: 50%
+    border-radius: 50%
+    width: 56px
+    height: 56px
+    line-height 56px
+    margin-left -28px
+    margin-top -28px
+    background #e8e8e8
+    background #fff
+    // background rgba(158,158,158,.2)
+    // box-shadow 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24)
+    text-align: center
+    color rgb(117, 117, 117)
+    border: none
+    outline: none
+    cursor pointer
+    padding 0
+    
+    &:hover
+      // color #fff
+
+  &-button
+    font-size 30px
+    // background: #737070
+    transform scale(0.95, 0.95)
+    color rgb(87, 87, 87)
+
+    a.&
+      color #3D4444
+
+      &:hover
+      &:focus
+        color #dfd7d7
+
+  &-toggle-button
+    z-index 9
+    // background: #666
+    font-size: 20px
+
+  &-icon
+    line-height inherit
+    
+    &.fa 
+      font-size 26px
+
+  &-items
+    list-style-type none
+    padding 0
+    margin 0
+
+  &-item
+    display inline-block

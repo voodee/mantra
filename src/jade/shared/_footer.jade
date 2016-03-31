@@ -1,2 +1,26 @@
-footer.mdl-mini-footer
-  .mdl-mini-footer--left-section Footer
+svg#svg-preloader(width='400', height='200', viewbox='0 0 400 200', style="left: 50%; top: 50%; position: absolute; transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 0, 0);")
+  defs
+    filter#goo
+      fegaussianblur(in='SourceGraphic', stddeviation='7', result='blur')
+      fecolormatrix(in='blur', mode='matrix', values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 17 -7', result='cm')
+      fecomposite(in='SourceGraphic', in2='cm')
+    filter#f2(x='-200%', y='-40%', width='400%', height='200%')
+      feoffset(in='SourceAlpha', dx='9', dy='3')
+      fegaussianblur(result='blurOut', in='offOut', stddeviation='0.51')
+      fecomponenttransfer
+        fefunca(type='linear', slope='0.05')
+      femerge
+        femergenode
+        femergenode(in='SourceGraphic')
+  g(filter='url(#goo)', style='fill:#fafafa')
+    ellipse#drop(cx='125', cy='90', rx='20', ry='20', fill-opacity='1', fill='#3BADFF')
+    ellipse#drop2(cx='125', cy='90', rx='20', ry='20', fill-opacity='1', fill='#3BADFF')
+
+
+
+svg(xmlns='http://www.w3.org/2000/svg', version='1.1', width='800', style='display: none')
+  defs
+    filter#goo-menu
+      fegaussianblur(in='SourceGraphic', stddeviation='12', result='blur')
+      fecolormatrix(in='blur', mode='matrix', values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15', result='goo-menu')
+      fecomposite(in='SourceGraphic', in2='goo-menu', operator='atop')

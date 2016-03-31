@@ -23,8 +23,7 @@
       "dest": "js",
       "extractSharedJs": true,
       "entries": {
-        "app": ["./app.js"],
-        "page": ["./page.js"]
+        "app": ["./app.js"]
       },
       "extensions": ["js"]
     },
@@ -90,6 +89,13 @@
       "src": "sprites",
       "dest": "images",
       "extensions": ["svg"]
+    },
+
+    "inject":{
+      "resources":[
+        "./public/css/*.css",
+        "./public/js/*.js"
+      ]
     }
   }
 }

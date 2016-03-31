@@ -12,7 +12,6 @@ var path         = require('path')
 var stylus       = require('gulp-stylus')
 var myth         = require('gulp-myth')
 var nib          = require('nib')
-var bootstrap    = require('bootstrap-styl')
 
 
 var paths = {
@@ -24,7 +23,7 @@ var cssTask = function () {
   return gulp.src(paths.src)
     .pipe(sourcemaps.init())
     .pipe(stylus({
-      use: [nib(), bootstrap()]
+      use: [nib()]
       //compress: true
     }))
     .on('error', handleErrors)
